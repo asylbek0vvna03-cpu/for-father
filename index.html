@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Для папы ❤️</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#eef7ff,#cfe6ff,#ffffff);
+overflow:hidden;color:#173b67}
+.screen{
+position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+padding:20px;opacity:0;pointer-events:none;transition:opacity .8s}
+.screen.active{opacity:1;pointer-events:auto}
+.card{
+width:min(92vw,520px);
+background:rgba(255,255,255,.28);
+backdrop-filter:blur(14px);
+border:1px solid rgba(255,255,255,.5);
+border-radius:24px;
+padding:28px;text-align:center;
+box-shadow:0 8px 30px rgba(0,0,80,.15)}
+h1{margin-bottom:18px}
+p{line-height:1.7;white-space:pre-line;font-size:18px}
+button{
+margin-top:22px;border:none;border-radius:999px;
+padding:14px 24px;font-size:17px;
+background:#2d74d9;color:#fff;cursor:pointer;
+transition:.3s}
+button:hover{transform:scale(1.05)}
+button:disabled{background:#9fb8dc;cursor:not-allowed}
+#nextHidden{opacity:0;display:none}
+img{width:100%;border-radius:18px;margin-bottom:18px}
+.heart,.confetti{position:fixed;top:-30px;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}
+.fadeIn{animation:fade .8s}
+@keyframes fade{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div id="s1" class="screen active"><div class="card fadeIn">
+<h1>💌 Небольшое письмо</h1>
+<p>Для Осмонова Асылбека Календеровича,
+
+отца троих детей:
+
+Султанбека,
+Айдарбека
+и конечно же Нурзады ❤️</p>
+<button onclick="go(2)">Открыть письмо</button>
+</div></div>
+
+<div id="s2" class="screen"><div class="card fadeIn">
+<h1>💙 Благодарим</h1>
+<p>За всё, что вы для нас делали
+и продолжаете делать по сей день.
+
+Мы ценим каждый труд,
+который вы вложили в нас.
+
+(っ'-')╮=͟͟͞͞💌</p>
+<button onclick="go(3)">Далее</button>
+</div></div>
+
+<div id="s3" class="screen"><div class="card fadeIn">
+<h1>❤️ Лучший отец</h1>
+<p>Спасибо за поддержку,
+заботу,
+защиту,
+советы,
+переживания
+и счастливые моменты,
+которые мы провели вместе.
+
+Мы очень рады,
+что именно вы являетесь нашим папой.
+
+Из тысячи возможностей
+мы бы снова выбрали именно вас. ❤️‍🩹</p>
+<button disabled>Завершить</button><br>
+<button id="nextHidden" onclick="go(4)">Ещё не всё, далее ☞</button>
+</div></div>
+
+<div id="s4" class="screen"><div class="card fadeIn">
+<h1>✨</h1>
+<p>Мы желаем только одного —
+
+чтобы вы всегда были
+
+здоровы,
+
+счастливы
+
+и чаще улыбались. ◡̈
+
+Пусть рядом будут люди,
+
+которые любят,
+
+ценят
+
+и поддерживают вас.
+
+(◍•ᴗ•◍)</p>
+<button onclick="go(5)">Последнее ❤️</button>
+</div></div>
+
+<div id="s5" class="screen"><div class="card fadeIn">
+<img src="family.jpg" alt="Семья">
+<p><b>Мы вас очень любим ❤️</b>
+
+Спасибо за всё,
+что вы сделали
+и продолжаете делать для нас.
+
+Вы —
+самый дорогой человек
+в нашей жизни.
+
+С любовью,
+
+Султанбек
+
+Айдарбек
+
+Нурзада</p>
+</div></div>
+
+<script>
+function go(n){
+document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+document.getElementById('s'+n).classList.add('active');
+if(n===3){
+const b=document.getElementById('nextHidden');
+b.style.display='none';b.style.opacity=0;
+setTimeout(()=>{
+b.style.display='inline-block';
+setTimeout(()=>b.style.transition='opacity .8s',10);
+setTimeout(()=>b.style.opacity=1,20);
+},3000);
+}
+}
+function spawnHeart(){
+let e=document.createElement('div');
+e.className='heart';
+e.innerHTML='❤️';
+e.style.left=Math.random()*100+'vw';
+e.style.fontSize=(18+Math.random()*20)+'px';
+e.style.animationDuration=(4+Math.random()*3)+'s';
+document.body.appendChild(e);
+setTimeout(()=>e.remove(),7000);
+}
+function spawnConfetti(){
+let e=document.createElement('div');
+e.className='confetti';
+e.innerHTML=['✨','🎉','💙','🤍'][Math.floor(Math.random()*4)];
+e.style.left=Math.random()*100+'vw';
+e.style.fontSize=(12+Math.random()*16)+'px';
+e.style.animationDuration=(3+Math.random()*3)+'s';
+document.body.appendChild(e);
+setTimeout(()=>e.remove(),6000);
+}
+setInterval(spawnHeart,450);
+setInterval(spawnConfetti,300);
+</script>
+</body></html>
